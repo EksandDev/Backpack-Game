@@ -8,8 +8,6 @@ namespace BackpackGame.Backpack
 
         public override void Initialize()
         {
-            Model.Initialize();
-            View.Initialize();
             View.PlayerWantsReleaseItem += GiveItemToViewFromModel;
             View.PlayerWantsStorageItem += GiveItemToModelFromView;
         }

@@ -8,10 +8,17 @@ namespace BackpackGame.Core.Abstractions
             View = view;
         }
 
-        public TModel Model { get; private set; }
-        public TView View { get; private set; }
+        public TModel Model { get; }
+        public TView View { get; }
         public bool IsEnabled { get; set; } = true;
         
         public abstract void Initialize();
+
+        public void SetIsEnabledForSystem(bool value)
+        {
+            IsEnabled = value;
+            Model.IsEnabled = value;
+            View.IsEnabled = value;
+        }
     }
 }

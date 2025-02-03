@@ -10,15 +10,7 @@ namespace BackpackGame.Backpack
 
         public BackpackModel(int itemsLimit)
         {
-            ItemsLimit = itemsLimit;
             _stack = new(itemsLimit);
-        }
-        
-        public int ItemsLimit { get; }
-        
-        public override void Initialize()
-        {
-            throw new System.NotImplementedException();
         }
         
         public bool TryTakeItem(out Storageable item)

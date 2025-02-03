@@ -9,11 +9,6 @@ namespace BackpackGame.Backpack
     {
         public event Action PlayerWantsReleaseItem;
         public event Action<Storageable> PlayerWantsStorageItem;
-        
-        public override void Initialize()
-        {
-            StartCoroutine(TrackInput());
-        }
 
         public void ReleaseItem(Storageable item)
         {
@@ -39,18 +34,13 @@ namespace BackpackGame.Backpack
                 return;
         }
 
-        private IEnumerator TrackInput()
+        private void Update()
         {
-            while (IsEnabled)
-            {
-                if (Input.GetKeyDown(KeyCode.R))
-                    PlayerWantsReleaseItem?.Invoke();
+            if (Input.GetKeyDown(KeyCode.R))
+                PlayerWantsReleaseItem?.Invoke();
                 
-                if (Input.GetKeyDown(KeyCode.E))
-                    PlayerWantsStorageItem?.Invoke(null);
-
-                yield return new WaitForFixedUpdate();
-            }
+            if (Input.GetKeyDown(KeyCode.E))
+                PlayerWantsStorageItem?.Invoke(null);
         }
     }
 }
