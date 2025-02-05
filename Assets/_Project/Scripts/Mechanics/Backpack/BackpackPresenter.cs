@@ -1,4 +1,5 @@
 using BackpackGame.Core.Abstractions;
+using BackpackGame.ScriptableObjects;
 
 namespace BackpackGame.Backpack
 {
@@ -8,22 +9,22 @@ namespace BackpackGame.Backpack
 
         public override void Initialize()
         {
-            View.PlayerWantsReleaseItem += GiveItemToViewFromModel;
-            View.PlayerWantsStorageItem += GiveItemToModelFromView;
+            View.PlayerWantsTakeItem += SendItemToViewFromModel;
+            View.PlayerWantsStorageItem += SendItemToModelFromView;
         }
 
-        private void GiveItemToViewFromModel()
+        private void SendItemToViewFromModel()
         {
             if (!IsEnabled)
                 return;
             
             if (Model.TryTakeItem(out var item))
-                View.ReleaseItem(item);
+                View.TakeItem(item);
             
-            View.ReleaseItemFailure();
+            View.TakeItemFailure();
         }
         
-        private void GiveItemToModelFromView(Storageable item)
+        private void SendItemToModelFromView(StorageableItemData item)
         {
             if (!IsEnabled)
                 return;

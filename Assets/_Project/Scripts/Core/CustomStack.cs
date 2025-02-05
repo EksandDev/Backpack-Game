@@ -12,6 +12,8 @@ namespace BackpackGame.Core
         {
             _stackLimit = stackLimit;
         }
+
+        public IReadOnlyList<T> List => _list;
         
         public bool TryTake(out T item)
         {

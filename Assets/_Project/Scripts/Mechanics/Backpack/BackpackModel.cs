@@ -1,19 +1,20 @@
 using BackpackGame.Core;
 using BackpackGame.Core.Abstractions;
+using BackpackGame.ScriptableObjects;
 using UnityEngine;
 
 namespace BackpackGame.Backpack
 {
     public class BackpackModel : Model
     {
-        private CustomStack<Storageable> _stack;
+        private CustomStack<StorageableItemData> _stack;
 
         public BackpackModel(int itemsLimit)
         {
             _stack = new(itemsLimit);
         }
         
-        public bool TryTakeItem(out Storageable item)
+        public bool TryTakeItem(out StorageableItemData item)
         {
             if (!IsEnabled)
             {
@@ -28,7 +29,7 @@ namespace BackpackGame.Backpack
             return false;
         }
 
-        public bool TryStorageItem(Storageable item)
+        public bool TryStorageItem(StorageableItemData item)
         {
             if (!IsEnabled)
                 return false;

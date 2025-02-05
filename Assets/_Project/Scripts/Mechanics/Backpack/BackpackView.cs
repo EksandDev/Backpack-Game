@@ -1,22 +1,22 @@
 using System;
-using System.Collections;
 using BackpackGame.Core.Abstractions;
+using BackpackGame.ScriptableObjects;
 using UnityEngine;
 
 namespace BackpackGame.Backpack
 {
     public class BackpackView : View
     {
-        public event Action PlayerWantsReleaseItem;
-        public event Action<Storageable> PlayerWantsStorageItem;
+        public event Action PlayerWantsTakeItem;
+        public event Action<StorageableItemData> PlayerWantsStorageItem;
 
-        public void ReleaseItem(Storageable item)
+        public void TakeItem(StorageableItemData item)
         {
             if (!IsEnabled)
                 return;
         }
 
-        public void ReleaseItemFailure()
+        public void TakeItemFailure()
         {
             if (!IsEnabled)
                 return;
@@ -37,7 +37,7 @@ namespace BackpackGame.Backpack
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.R))
-                PlayerWantsReleaseItem?.Invoke();
+                PlayerWantsTakeItem?.Invoke();
                 
             if (Input.GetKeyDown(KeyCode.E))
                 PlayerWantsStorageItem?.Invoke(null);
