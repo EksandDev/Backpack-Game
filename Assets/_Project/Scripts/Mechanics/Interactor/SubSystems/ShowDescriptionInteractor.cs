@@ -10,7 +10,7 @@ namespace BackpackGame.Interactor
             if (hitCollider && hitCollider.TryGetComponent(out IHaveDescription haveDescription))
             {
                 var description = haveDescription.Description;
-                //показать описание на экране
+                //Debug.Log(description);
             }
         }
     }

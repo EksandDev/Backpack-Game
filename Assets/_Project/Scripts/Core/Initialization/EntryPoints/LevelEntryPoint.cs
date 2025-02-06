@@ -1,3 +1,4 @@
+using System;
 using BackpackGame.Backpack;
 using BackpackGame.Hand;
 using BackpackGame.Interactor;
@@ -27,6 +28,7 @@ namespace BackpackGame.Core.Initialization
                 handInitializer.Presenter
             );
             _presentersInstaller.Initialize(presenters);
+            //перенести эту ебанину в инсталлер
             
             _sceneContext.Run();
             

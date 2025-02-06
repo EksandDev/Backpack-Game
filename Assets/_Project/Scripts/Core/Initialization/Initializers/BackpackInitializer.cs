@@ -1,5 +1,6 @@
 using BackpackGame.Backpack;
 using BackpackGame.Core.Abstractions;
+using Zenject;
 
 namespace BackpackGame.Core.Initialization
 {
@@ -12,7 +13,7 @@ namespace BackpackGame.Core.Initialization
             BackpackModel model = new(itemsLimit);
             Presenter = new(model, view);
         }
-
+        
         public override void Initialize()
         {
             Presenter.Initialize();

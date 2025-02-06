@@ -13,6 +13,7 @@ namespace BackpackGame.Interactor
         [Inject]
         private void Construct(HandPresenter handPresenter)
         {
+            Debug.LogWarning("Construct");
             _handPresenter = handPresenter;
         }
         #endregion
