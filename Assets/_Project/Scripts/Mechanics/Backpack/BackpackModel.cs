@@ -14,27 +14,27 @@ namespace BackpackGame.Backpack
             _stack = new(itemsLimit);
         }
         
-        public bool TryTakeItem(out StorageableItemData item)
+        public bool TryTakeItem(out StorageableItemData itemData)
         {
             if (!IsEnabled)
             {
-                item = null;
+                itemData = null;
                 return false;
             }
             
-            if (_stack.TryTake(out item))
+            if (_stack.TryTake(out itemData))
                 return true;
             
             Debug.LogWarning("Trying take an item from empty backpack!");
             return false;
         }
 
-        public bool TryStorageItem(StorageableItemData item)
+        public bool TryStorageItem(StorageableItemData itemData)
         {
-            if (!IsEnabled)
+            if (!IsEnabled || !itemData)
                 return false;
             
-            if (_stack.TryPush(item))
+            if (_stack.TryPush(itemData))
                 return true;
             
             Debug.LogWarning("Trying storage an item in full backpack!");

@@ -18,6 +18,7 @@ namespace BackpackGame.Interactor
             if (!Physics.Raycast(_originRaycastPoint.position, _originRaycastPoint.forward,
                     out raycastHit, _raycastMaxDistance))
             {
+                //null на результат рейкаста поменять
                 RaycastReachedObject?.Invoke(null);
                 return;
             }

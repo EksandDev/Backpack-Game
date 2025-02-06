@@ -18,18 +18,18 @@ namespace BackpackGame.Backpack
             if (!IsEnabled)
                 return;
             
-            if (Model.TryTakeItem(out var item))
-                View.TakeItem(item);
+            if (Model.TryTakeItem(out var itemData))
+                View.TakeItem(itemData);
             
             View.TakeItemFailure();
         }
         
-        private void SendItemToModelFromView(StorageableItemData item)
+        private void SendItemToModelFromView(StorageableItemData itemData)
         {
             if (!IsEnabled)
                 return;
             
-            if (Model.TryStorageItem(item))
+            if (Model.TryStorageItem(itemData))
                 View.StorageItem();
             
             View.StorageItemFailure();

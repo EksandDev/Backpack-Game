@@ -10,7 +10,7 @@ namespace BackpackGame.Backpack
         public event Action PlayerWantsTakeItem;
         public event Action<StorageableItemData> PlayerWantsStorageItem;
 
-        public void TakeItem(StorageableItemData item)
+        public void TakeItem(StorageableItemData itemData)
         {
             if (!IsEnabled)
                 return;
@@ -39,7 +39,7 @@ namespace BackpackGame.Backpack
             if (Input.GetKeyDown(KeyCode.R))
                 PlayerWantsTakeItem?.Invoke();
                 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Q))
                 PlayerWantsStorageItem?.Invoke(null);
         }
     }

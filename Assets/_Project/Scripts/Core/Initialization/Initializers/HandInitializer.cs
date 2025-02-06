@@ -5,17 +5,17 @@ namespace BackpackGame.Core.Initialization
 {
     public class HandInitializer : MVPInitializer<HandView>
     {
-        private HandPresenter _presenter;
+        public HandPresenter Presenter { get; }
         
         public HandInitializer(HandView view) : base(view)
         {
             HandModel model = new(view.HandPoint);
-            _presenter = new(model, view);
+            Presenter = new(model, view);
         }
 
         public override void Initialize()
         {
-            _presenter.Initialize();
+            Presenter.Initialize();
         }
     }
 }

@@ -1,5 +1,4 @@
 using BackpackGame.Core.Abstractions;
-using BackpackGame.Items;
 
 namespace BackpackGame.Hand
 {

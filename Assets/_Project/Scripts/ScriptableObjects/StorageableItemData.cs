@@ -1,3 +1,4 @@
+using BackpackGame.Core.Abstractions;
 using UnityEngine;
 
 namespace BackpackGame.ScriptableObjects
@@ -7,10 +8,10 @@ namespace BackpackGame.ScriptableObjects
     {
         [SerializeField] private string _name;
         [SerializeField, TextArea(1, 5)] private string _description;
-        [SerializeField] private GameObject _prefab;
+        [SerializeField] private StorageableItem _prefab;
 
         public string Name => _name;
         public string Description => _description;
-        public GameObject Prefab => _prefab;
+        public StorageableItem Prefab => _prefab;
     }
 }

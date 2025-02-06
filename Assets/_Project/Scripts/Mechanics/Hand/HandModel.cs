@@ -1,5 +1,5 @@
 using BackpackGame.Core.Abstractions;
-using BackpackGame.Items;
+using BackpackGame.ScriptableObjects;
 using UnityEngine;
 
 namespace BackpackGame.Hand
