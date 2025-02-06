@@ -1,5 +1,4 @@
 using BackpackGame.Core.Abstractions;
-using UnityEngine;
 
 namespace BackpackGame.Interactor
 {
@@ -10,12 +9,7 @@ namespace BackpackGame.Interactor
         public override void Initialize()
         {
             Model.InitializeSubSystems();
-            View.RaycastReachedObject += SendColliderToModelFromView;
-        }
-
-        private void SendColliderToModelFromView(Collider collider)
-        {
-            Model.SendColliderToSubSystems(collider);
+            View.RaycastReachedObject += Model.SendColliderToSubSystems;
         }
     }
 }

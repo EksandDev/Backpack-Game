@@ -10,7 +10,5 @@ namespace BackpackGame.Interactor
             if (hitCollider && hitCollider.TryGetComponent(out IUsable usable))
                 usable.Use();
         }
-        
-        
     }
 }

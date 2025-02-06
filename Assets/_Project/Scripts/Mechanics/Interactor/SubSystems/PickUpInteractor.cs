@@ -9,7 +9,7 @@ namespace BackpackGame.Interactor
         {
             if (hitCollider && hitCollider.TryGetComponent(out IPickUp pickUp))
             {
-                var so = pickUp.StorageableItemData;
+                var so = pickUp.Data;
                 //передать в скрипт рук сошник пик апа
             }
         }

@@ -1,4 +1,5 @@
 using BackpackGame.Backpack;
+using BackpackGame.Hand;
 using BackpackGame.Interactor;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,7 @@ namespace BackpackGame.Core.Initialization
         [SerializeField] private SceneContext _sceneContext;
         [SerializeField] private BackpackView _backpackView;
         [SerializeField] private InteractorView _interactorView;
+        [SerializeField] private HandView _handView;
         [SerializeField] private int _backpackItemsLimit = 5;
         
         private void Awake()
@@ -18,9 +20,11 @@ namespace BackpackGame.Core.Initialization
             
             BackpackInitializer backpackInitializer = new(_backpackView, _backpackItemsLimit);
             InteractorInitializer interactorInitializer = new(_interactorView);
+            HandInitializer handInitializer = new(_handView);
             
             backpackInitializer.Initialize();
             interactorInitializer.Initialize();
+            handInitializer.Initialize();
         }
     }
 }
