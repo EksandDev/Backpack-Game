@@ -1,5 +1,6 @@
 using BackpackGame.Core;
 using BackpackGame.Core.Abstractions;
+using BackpackGame.Hand;
 using BackpackGame.ScriptableObjects;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace BackpackGame.Backpack
     public class BackpackModel : Model
     {
         private CustomStack<StorageableItemData> _stack;
+        private HandModel _handModel;
 
         public BackpackModel(int itemsLimit)
         {
@@ -29,12 +31,12 @@ namespace BackpackGame.Backpack
             return false;
         }
 
-        public bool TryStorageItem(StorageableItemData itemData)
+        public bool TryStorageItem()
         {
-            if (!IsEnabled || !itemData)
+            if (!IsEnabled || !_handModel.CurrentItem)
                 return false;
             
-            if (_stack.TryPush(itemData))
+            if (_stack.TryPush(_handModel.CurrentItem.Data))
                 return true;
             
             Debug.LogWarning("Trying storage an item in full backpack!");

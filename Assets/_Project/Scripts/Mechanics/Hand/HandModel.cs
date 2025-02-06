@@ -1,13 +1,14 @@
 using BackpackGame.Core.Abstractions;
-using BackpackGame.ScriptableObjects;
 using UnityEngine;
 
 namespace BackpackGame.Hand
 {
     public class HandModel : Model
     {
-        private StorageableItem _currentItem;
         private Transform _handPoint;
+        private const float _force = 100f;
+
+        public StorageableItem CurrentItem { get; private set; }
 
         public HandModel(Transform handPoint)
         {
@@ -16,42 +17,43 @@ namespace BackpackGame.Hand
         
         public void PickUpItem(StorageableItem item)
         {
-            _currentItem = item;
-            _currentItem.OnPickUp();
-            _currentItem.Rigidbody.isKinematic = true;
-            _currentItem.transform.parent = _handPoint;
-            _currentItem.transform.position = Vector3.zero;
+            CurrentItem = item;
+            CurrentItem.OnPickUp();
+            CurrentItem.Rigidbody.isKinematic = true;
+            CurrentItem.transform.parent = _handPoint;
+            CurrentItem.transform.rotation = _handPoint.rotation;
+            CurrentItem.transform.localPosition = Vector3.zero;
         }
         
         public void DropItem()
         {
-            if (!_currentItem)
+            if (!CurrentItem)
             {
                 Debug.LogWarning("Item in hand is null");
                 return;
             }
-
-            _currentItem.OnDrop();
-            _currentItem.Rigidbody.isKinematic = false;
-            _currentItem.transform.parent = null;
-            _currentItem.Rigidbody.AddForce(_currentItem.transform.forward, ForceMode.Force);
-            _currentItem = null;
+            
+            CurrentItem.OnDrop();
+            CurrentItem.Rigidbody.isKinematic = false;
+            CurrentItem.transform.parent = null;
+            CurrentItem.Rigidbody.AddForce(_handPoint.forward * _force, ForceMode.Force);
+            CurrentItem = null;
         }
 
         public void UseItem()
         {
-            if (!_currentItem)
+            if (!CurrentItem)
             {
                 Debug.LogWarning("Item in hand is null");
                 return;
             }
 
-            if (!_currentItem.TryGetComponent(out UsableInHandItem usableItem)) 
+            if (!CurrentItem.TryGetComponent(out UsableInHandItem usableItem)) 
                 return;
             
             usableItem.Use();
                 
-            if (_currentItem.TryGetComponent(out ISelfDropItem selfDropItem))
+            if (CurrentItem.TryGetComponent(out ISelfDropItem selfDropItem))
                 DropItem();
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BackpackGame.Core.Abstractions;
+using BackpackGame.Hand;
 using UnityEngine;
 
 namespace BackpackGame.Interactor
@@ -8,11 +9,11 @@ namespace BackpackGame.Interactor
     {
         private List<InteractorSubSystem> _subSystems;
 
-        public void InitializeSubSystems()
+        public void InitializeSubSystems(HandPresenter handPresenter)
         {
             _subSystems = new()
             {
-                new PickUpInteractor(),
+                new PickUpInteractor(handPresenter),
                 new UseInteractor(),
                 new ShowDescriptionInteractor()
             };

@@ -8,15 +8,11 @@ namespace BackpackGame.Interactor
     public class PickUpInteractor : InteractorSubSystem
     {
         private HandPresenter _handPresenter;
-        
-        #region Zenject
-        [Inject]
-        private void Construct(HandPresenter handPresenter)
+
+        public PickUpInteractor(HandPresenter handPresenter)
         {
-            Debug.LogWarning("Construct");
             _handPresenter = handPresenter;
         }
-        #endregion
         
         public override void Interact(Collider hitCollider)
         {

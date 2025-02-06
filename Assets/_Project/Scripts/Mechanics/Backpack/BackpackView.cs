@@ -8,7 +8,7 @@ namespace BackpackGame.Backpack
     public class BackpackView : View
     {
         public event Action PlayerWantsTakeItem;
-        public event Action<StorageableItemData> PlayerWantsStorageItem;
+        public event Action PlayerWantsStorageItem;
 
         public void TakeItem(StorageableItemData itemData)
         {
@@ -40,7 +40,7 @@ namespace BackpackGame.Backpack
                 PlayerWantsTakeItem?.Invoke();
                 
             if (Input.GetKeyDown(KeyCode.Q))
-                PlayerWantsStorageItem?.Invoke(null);
+                PlayerWantsStorageItem?.Invoke();
         }
     }
 }

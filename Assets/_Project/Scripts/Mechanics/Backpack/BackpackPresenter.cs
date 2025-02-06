@@ -24,12 +24,12 @@ namespace BackpackGame.Backpack
             View.TakeItemFailure();
         }
         
-        private void SendItemToModelFromView(StorageableItemData itemData)
+        private void SendItemToModelFromView()
         {
             if (!IsEnabled)
                 return;
             
-            if (Model.TryStorageItem(itemData))
+            if (Model.TryStorageItem())
                 View.StorageItem();
             
             View.StorageItemFailure();

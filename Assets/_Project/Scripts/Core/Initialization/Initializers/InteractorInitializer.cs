@@ -1,21 +1,25 @@
 using BackpackGame.Core.Abstractions;
+using BackpackGame.Hand;
 using BackpackGame.Interactor;
 
 namespace BackpackGame.Core.Initialization
 {
     public class InteractorInitializer : MVPInitializer<InteractorView>
     {
-        public InteractorPresenter Presenter { get; }
+        private InteractorPresenter _presenter;
+        private HandPresenter _handPresenter;
         
-        public InteractorInitializer(InteractorView view) : base(view)
+        public InteractorInitializer(InteractorView view, HandPresenter handPresenter) : base(view)
         {
             InteractorModel model = new();
-            Presenter = new(model, view);
+            _presenter = new(model, view);
+            _handPresenter = handPresenter;
         }
 
         public override void Initialize()
         {
-            Presenter.Initialize();
+            _presenter.Initialize();
+            _presenter.Model.InitializeSubSystems(_handPresenter);
         }
     }
 }

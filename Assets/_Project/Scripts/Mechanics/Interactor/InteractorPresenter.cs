@@ -8,7 +8,6 @@ namespace BackpackGame.Interactor
 
         public override void Initialize()
         {
-            Model.InitializeSubSystems();
             View.RaycastReachedObject += Model.SendColliderToSubSystems;
         }
     }
