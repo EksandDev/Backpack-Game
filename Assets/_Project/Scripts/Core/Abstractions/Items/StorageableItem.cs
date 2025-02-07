@@ -1,3 +1,4 @@
+using System;
 using BackpackGame.ScriptableObjects;
 using UnityEngine;
 
@@ -7,19 +8,16 @@ namespace BackpackGame.Core.Abstractions
     public abstract class StorageableItem : MonoBehaviour, IHaveDescription
     {
         [SerializeField] private StorageableItemData _data;
-        [SerializeField] private Rigidbody _rigidbody;
         
         public StorageableItemData Data => _data;
         public string Description => Data.Description;
-        public Rigidbody Rigidbody => _rigidbody;
+        public Rigidbody Rigidbody { get; private set; }
         public bool IsAvailableToPickUp { get; private set; } = true;
 
-        #region Validation
-        private void OnValidate()
+        private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody>();
+            Rigidbody = GetComponent<Rigidbody>();
         }
-        #endregion
 
         public void OnPickUp() => IsAvailableToPickUp = false;
         public void OnDrop() => IsAvailableToPickUp = true;

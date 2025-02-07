@@ -11,14 +11,15 @@ namespace BackpackGame.Backpack
         private CustomStack<StorageableItemData> _stack;
         private HandModel _handModel;
 
-        public BackpackModel(int itemsLimit)
+        public BackpackModel(HandModel handModel, int itemsLimit)
         {
+            _handModel = handModel;
             _stack = new(itemsLimit);
         }
         
         public bool TryTakeItem(out StorageableItemData itemData)
         {
-            if (!IsEnabled)
+            if (!IsEnabled || _handModel.CurrentItem)
             {
                 itemData = null;
                 return false;

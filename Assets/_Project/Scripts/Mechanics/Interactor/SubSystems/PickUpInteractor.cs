@@ -8,6 +8,7 @@ namespace BackpackGame.Interactor
     public class PickUpInteractor : InteractorSubSystem
     {
         private HandPresenter _handPresenter;
+        private const string _playerLayer = "IgnoreRaycast";
 
         public PickUpInteractor(HandPresenter handPresenter)
         {
@@ -16,8 +17,8 @@ namespace BackpackGame.Interactor
         
         public override void Interact(Collider hitCollider)
         {
-            if (hitCollider && hitCollider.TryGetComponent(out StorageableItem storageableItem)
-                && Input.GetKeyDown(KeyCode.E))
+            if (hitCollider && hitCollider.TryGetComponent(out StorageableItem storageableItem) 
+                            && Input.GetKeyDown(KeyCode.E) && storageableItem.IsAvailableToPickUp)
                 _handPresenter.PickUpItem(storageableItem);
         }
     }

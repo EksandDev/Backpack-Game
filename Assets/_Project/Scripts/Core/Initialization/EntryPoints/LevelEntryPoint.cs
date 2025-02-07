@@ -14,10 +14,10 @@ namespace BackpackGame.Core.Initialization
         [SerializeField] private HandView _handView;
         [SerializeField] private int _backpackItemsLimit = 5;
         
-        private void Awake()
+        private void Start()
         {
-            BackpackInitializer backpackInitializer = new(_backpackView, _backpackItemsLimit);
             HandInitializer handInitializer = new(_handView);
+            BackpackInitializer backpackInitializer = new(_backpackView, handInitializer.Presenter, _backpackItemsLimit);
             InteractorInitializer interactorInitializer = new(_interactorView, handInitializer.Presenter);
             
             _sceneContext.Run();

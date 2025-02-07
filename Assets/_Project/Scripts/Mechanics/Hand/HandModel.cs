@@ -56,5 +56,10 @@ namespace BackpackGame.Hand
             if (CurrentItem.TryGetComponent(out ISelfDropItem selfDropItem))
                 DropItem();
         }
+
+        public void DestroyCurrentItem()
+        {
+            CurrentItem = null;
+        }
     }
 }

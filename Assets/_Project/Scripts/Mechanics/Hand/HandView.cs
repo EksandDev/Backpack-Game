@@ -17,6 +17,16 @@ namespace BackpackGame.Hand
         {
             //аудио и всякие эффектики
         }
+
+        public StorageableItem SpawnItem(StorageableItem prefab)
+        {
+            return Instantiate(prefab);
+        }
+
+        public void DestroyItem(StorageableItem item)
+        {
+            Destroy(item.gameObject);
+        }
         
         private void Update()
         {
