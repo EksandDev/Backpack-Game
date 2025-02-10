@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Cube
   _description: Just a cube
+  _icon: {fileID: 7603832886256956378, guid: 8932171e71017b441bbb182b7fdbc6a7, type: 3}
   _prefab: {fileID: 6415817280745637776, guid: 211fb3174b097e74aa82ef5eade4aa04, type: 3}

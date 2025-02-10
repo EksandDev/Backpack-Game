@@ -1,3 +1,4 @@
+using System;
 using BackpackGame.Core;
 using BackpackGame.Core.Abstractions;
 using BackpackGame.Hand;
@@ -10,6 +11,9 @@ namespace BackpackGame.Backpack
     {
         private CustomStack<StorageableItemData> _stack;
         private HandModel _handModel;
+
+        public event Action ItemTaken;
+        public event Action<GameObject> ItemStored;
 
         public BackpackModel(HandModel handModel, int itemsLimit)
         {
@@ -24,9 +28,12 @@ namespace BackpackGame.Backpack
                 itemData = null;
                 return false;
             }
-            
+
             if (_stack.TryTake(out itemData))
+            {
+                ItemTaken?.Invoke();
                 return true;
+            }
             
             Debug.LogWarning("Trying take an item from empty backpack!");
             return false;
@@ -36,9 +43,12 @@ namespace BackpackGame.Backpack
         {
             if (!IsEnabled || !_handModel.CurrentItem)
                 return false;
-            
+
             if (_stack.TryPush(_handModel.CurrentItem.Data))
+            {
+                ItemStored?.Invoke(_handModel.CurrentItem.Data.Icon);
                 return true;
+            }
             
             Debug.LogWarning("Trying storage an item in full backpack!");
             return false;

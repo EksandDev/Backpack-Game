@@ -1,14 +1,12 @@
 using BackpackGame.Core.Abstractions;
 using BackpackGame.Hand;
 using UnityEngine;
-using Zenject;
 
 namespace BackpackGame.Interactor
 {
     public class PickUpInteractor : InteractorSubSystem
     {
         private HandPresenter _handPresenter;
-        private const string _playerLayer = "IgnoreRaycast";
 
         public PickUpInteractor(HandPresenter handPresenter)
         {

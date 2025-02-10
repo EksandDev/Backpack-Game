@@ -7,18 +7,18 @@ namespace BackpackGame.Core.Initialization
 {
     public class BackpackInitializer : MVPInitializer<BackpackView>
     {
-        private BackpackPresenter _presenter;
+        public BackpackPresenter Presenter { get; private set; }
         
         public BackpackInitializer(BackpackView view, HandPresenter handPresenter, int itemsLimit) 
             : base(view)
         {
             BackpackModel model = new(handPresenter.Model, itemsLimit);
-            _presenter = new(model, view, handPresenter);
+            Presenter = new(model, view, handPresenter);
         }
         
         public override void Initialize()
         {
-            _presenter.Initialize();
+            Presenter.Initialize();
         }
     }
 }

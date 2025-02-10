@@ -1,4 +1,3 @@
-using System;
 using BackpackGame.ScriptableObjects;
 using UnityEngine;
 

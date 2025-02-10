@@ -1,6 +1,7 @@
 using BackpackGame.Core.Abstractions;
 using BackpackGame.Hand;
 using BackpackGame.ScriptableObjects;
+using UnityEngine;
 
 namespace BackpackGame.Backpack
 {
