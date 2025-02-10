@@ -9,12 +9,12 @@ namespace BackpackGame.Backpack
     {
         private BackpackModel _backpackModel;
         private BackpackSlot[] _allSlots;
-        private Stack<BackpackSlot> _activeSlots;
+        private Stack<BackpackSlot> _fullSlots;
 
         public BackpackSlotsProvider(BackpackSlot[] slots, BackpackModel backpackModel)
         {
             _allSlots = slots;
-            _activeSlots = new(_allSlots.Length);
+            _fullSlots = new(_allSlots.Length);
             _backpackModel = backpackModel;
         }
 
@@ -26,21 +26,21 @@ namespace BackpackGame.Backpack
 
         private void ActivateSlot(GameObject icon)
         {
-            var disabledSlot = _allSlots.FirstOrDefault(slot => !slot.isActiveAndEnabled);
+            var freeSlot = _allSlots.FirstOrDefault(slot => !slot.IsFull);
 
-            if (!disabledSlot)
+            if (!freeSlot)
                 throw new ArgumentNullException();
             
-            disabledSlot.Initialize(icon);
-            _activeSlots.Push(disabledSlot);
+            freeSlot.Initialize(icon);
+            _fullSlots.Push(freeSlot);
         }
 
         private void DeactivateSlot()
         {
-            if (!_activeSlots.Peek())
+            if (!_fullSlots.Peek())
                 throw new ArgumentNullException();
 
-            var activeSlot = _activeSlots.Pop();
+            var activeSlot = _fullSlots.Pop();
             activeSlot.Deinitialize();
         }
     }
